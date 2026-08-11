@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>NGX NFS CSI Driver — Helm Chart Repository</title>
+<meta charset="utf-8">
+<style>body{font-family:sans-serif;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.6}
+pre{background:#f4f4f4;padding:12px;border-radius:6px;overflow-x:auto}
+</style></head>
+<body>
+<h1>NGX Storage NFS CSI Driver</h1>
+<p>Helm chart repository for the NGX Storage NFS CSI driver (provisions NFS shares from NGX Storage Manager).</p>
+<h2>Add the repository</h2>
+<pre>helm repo add ngx-nfs-csi https://ngxstorage.github.io/nfs-csi-ngxstorage-driver
+helm repo update</pre>
+<h2>Install</h2>
+<pre>helm install ngx-nfs-csi ngx-nfs-csi/nfs-csi-ngxstorage \
+  --namespace nfs-csi-ngxstorage --create-namespace \
+  --set openshift.enabled=true \
+  --set secret.create=true \
+  --set secret.storageIPs='192.168.1.201,192.168.1.202' \
+  --set secret.poolName='openstackSSD1' \
+  --set secret.apiKey='&lt;api-key&gt;' \
+  --set secret.dataIP='10.10.10.202'</pre>
+<p><a href="https://github.com/NGXStorage/nfs-csi-ngxstorage-driver">GitHub repository</a></p>
+</body>
+</html>
