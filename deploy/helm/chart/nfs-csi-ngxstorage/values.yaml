@@ -13,6 +13,26 @@ image:
 # Driver console verbosity: debug, info, warn, error, dpanic, panic, fatal.
 logLevel: info
 
+# Optional label prepended to the canonical CSI driver name. Empty preserves
+# nfs.csi.ngxstorage.com. A non-empty prefix produces <prefix>.nfs.csi.ngxstorage.com
+# and names driver resources as <prefix>-nfs-csi-ngxstorage so a second driver
+# instance can serve a distinct NGX backend on the same cluster.
+driverNamePrefix: ""
+
+# Namespace that owns all namespaced driver resources. Must differ per instance.
+namespace: nfs-csi-ngxstorage
+
+# Where the node DaemonSet may run: all (every node), master, or worker.
+nodePlacement: all
+
+# Where the controller Deployment may run: master (default), worker, or all.
+controllerPlacement: master
+
+# Liveness probe HTTP ports. A second driver instance on the same node
+# must use different ports (e.g. 9819 / 9818).
+controllerLivenessPort: 9808
+nodeLivenessPort: 9809
+
 # Backend secret. Prefer an existing Secret in production.
 # Set create=true only when managing the Secret through Helm.
 secret:

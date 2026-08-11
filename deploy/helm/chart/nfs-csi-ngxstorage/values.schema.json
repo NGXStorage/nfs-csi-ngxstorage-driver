@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Values for the NGX NFS CSI driver chart for Red Hat OpenShift",
+  "properties": {
+    "image": {
+      "type": "object",
+      "title": "Driver image",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "title": "Image repository",
+          "default": "quay.io/ngxstorage/nfs-csi-ngxstorage"
+        },
+        "tag": {
+          "type": "string",
+          "title": "Image tag",
+          "description": "Reviewed immutable release tag or digest. Do not use :latest in production.",
+          "default": "2.0.0-2"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "Image pull policy",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "default": "IfNotPresent"
+        }
+      },
+      "required": [
+        "repository",
+        "tag"
+      ]
+    },
+    "logLevel": {
+      "type": "string",
+      "title": "Console log level",
+      "description": "Verbosity of the driver console output. File logs remain detailed regardless of this value.",
+      "enum": [
+        "debug",
+        "info",
+        "warn",
+        "error",
+        "dpanic",
+        "panic",
+        "fatal"
+      ],
+      "default": "info"
+    },
+    "driverNamePrefix": {
+      "type": "string",
+      "title": "Driver name prefix",
+      "description": "Single label prepended to the CSI driver name and to driver resource names. Empty preserves nfs.csi.ngxstorage.com and the nfs-csi-ngxstorage resource names; a non-empty prefix produces <prefix>.nfs.csi.ngxstorage.com (driver name) and <prefix>-nfs-csi-ngxstorage (resource names) so a second driver instance can serve a distinct NGX backend on the same cluster (for example 201 or 205).",
+      "default": ""
+    },
+    "namespace": {
+      "type": "string",
+      "title": "Driver namespace",
+      "description": "Namespace that owns all namespaced driver resources. Use a distinct namespace for each driver instance.",
+      "default": "nfs-csi-ngxstorage"
+    },
+    "nodePlacement": {
+      "type": "string",
+      "title": "Node pod placement",
+      "description": "Where the node DaemonSet may run. Use worker for a high-speed backend reachable only from worker NICs, master for control-plane-only placement, or all for the general-purpose backend.",
+      "enum": [
+        "all",
+        "master",
+        "worker"
+      ],
+      "default": "all"
+    },
+    "secret": {
+      "type": "object",
+      "title": "Backend Secret",
+      "description": "Prefer an existing Secret in production. Set create=true only when managing the Secret through Helm.",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "title": "Create the Secret",
+          "description": "When true, Helm creates the Secret from storageIPs/poolName/apiKey/dataIP. The API key is then stored in the rendered release metadata.",
+          "default": false
+        },
+        "name": {
+          "type": "string",
+          "title": "Secret name",
+          "default": "nfs-csi-ngxstorage-config"
+        },
+        "storageIPs": {
+          "type": "string",
+          "title": "Storage IPs",
+          "description": "Comma-separated NGX management API IPs. Required when secret.create=true.",
+          "default": ""
+        },
+        "poolName": {
+          "type": "string",
+          "title": "Pool name",
+          "description": "NGX share pool name. Required when secret.create=true.",
+          "default": ""
+        },
+        "apiKey": {
+          "type": "string",
+          "title": "API key",
+          "description": "NGX management API key. Required when secret.create=true.",
+          "default": ""
+        },
+        "dataIP": {
+          "type": "string",
+          "title": "Data IP",
+          "description": "NGX NFS data IP. Required when secret.create=true.",
+          "default": ""
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "snapshotClass": {
+      "type": "object",
+      "title": "VolumeSnapshotClass",
+      "properties": {
+        "create": {
+          "type": "boolean",
+          "title": "Create the VolumeSnapshotClass",
+          "description": "When true, the chart installs a VolumeSnapshotClass. OpenShift owns the snapshot CRDs and controller; only disable this when the snapshot API is unavailable.",
+          "default": true
+        }
+      }
+    },
+    "controllerPlacement": {
+      "type": "string",
+      "title": "Controller pod placement",
+      "description": "Where the controller Deployment may run. Use master (default) for control-plane placement, worker for worker-only, or all.",
+      "enum": [
+        "all",
+        "master",
+        "worker"
+      ],
+      "default": "master"
+    },
+    "controllerLivenessPort": {
+      "type": "integer",
+      "title": "Controller liveness probe port",
+      "description": "HTTP port for the controller liveness-probe sidecar. A second driver instance must use a different port.",
+      "minimum": 1,
+      "maximum": 65535,
+      "default": 9808
+    },
+    "nodeLivenessPort": {
+      "type": "integer",
+      "title": "Node liveness probe port",
+      "description": "HTTP port for the node liveness-probe sidecar. A second driver instance in hostNetwork on the same worker must use a different port.",
+      "minimum": 1,
+      "maximum": 65535,
+      "default": 9809
+    }
+  },
+  "required": [
+    "image",
+    "secret",
+    "snapshotClass"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "secret": {
+            "properties": {
+              "create": {
+                "const": true
+              }
+            }
+          }
+        },
+        "required": [
+          "secret"
+        ]
+      },
+      "then": {
+        "properties": {
+          "secret": {
+            "required": [
+              "storageIPs",
+              "poolName",
+              "apiKey",
+              "dataIP"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
