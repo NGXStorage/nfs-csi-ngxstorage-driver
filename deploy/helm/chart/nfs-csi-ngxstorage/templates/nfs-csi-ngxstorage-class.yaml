@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: CSIDriver
 metadata:
-  name: nfs.csi.ngxstorage.com
+  name: {{ include "ngxstorage.driverName" . }}
 spec:
   attachRequired: true
   fsGroupPolicy: None
@@ -12,8 +12,8 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: nfs-csi-ngxstorage
-provisioner: nfs.csi.ngxstorage.com
+  name: {{ include "ngxstorage.fullname" . }}
+provisioner: {{ include "ngxstorage.driverName" . }}
 allowVolumeExpansion: true
 reclaimPolicy: Delete
 volumeBindingMode: Immediate

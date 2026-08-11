@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: nfs-csi-ngxstorage-node
-  namespace: nfs-csi-ngxstorage
+  name: {{ include "ngxstorage.fullname" . }}-node
+  namespace: {{ .Values.namespace }}
   labels:
     app.kubernetes.io/name: nfs-csi-ngxstorage
     app.kubernetes.io/component: node
@@ -20,26 +20,33 @@ spec:
       labels:
         app.kubernetes.io/name: nfs-csi-ngxstorage
         app.kubernetes.io/component: node
+      {{- if .Values.openshift.enabled }}
+      annotations:
+        openshift.io/required-scc: nfs-csi-ngxstorage-node-scc
+      {{- end }}
     spec:
-      serviceAccountName: nfs-csi-ngxstorage-node
+      serviceAccountName: {{ include "ngxstorage.fullname" . }}-node
       automountServiceAccountToken: false
       priorityClassName: system-node-critical
-      # NGX defaults to NFSv3/nolock. Keep host PID/IPC for rpc-statd/nfsd
-      # compatibility; this matches the validated reference NFS node profile.
       hostPID: true
       hostNetwork: true
       hostIPC: true
       nodeSelector:
         kubernetes.io/os: linux
+        {{- if eq .Values.nodePlacement "worker" }}
+        node-role.kubernetes.io/worker: ""
+        {{- else if eq .Values.nodePlacement "master" }}
+        node-role.kubernetes.io/master: ""
+        {{- end }}
       tolerations:
         - operator: Exists
       containers:
         - name: node-driver-registrar
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:715fed4adf4280d9a8e92a09cdcc35ed9bb95e623b1d5fc2f1b753981ecf41f4
+          image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.17.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
-            - --kubelet-registration-path=/var/lib/kubelet/plugins/nfs.csi.ngxstorage.com/csi.sock
+            - --kubelet-registration-path=/var/lib/kubelet/plugins/{{ include "ngxstorage.driverName" . }}/csi.sock
             - --v=2
           securityContext:
             allowPrivilegeEscalation: false
@@ -51,11 +58,11 @@ spec:
             - name: registration-dir
               mountPath: /registration
         - name: liveness-probe
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:ccf6bdeaf2a070edacb7c24a4e46af27a65dc25faf0fb4edc37cdfa922109b67
+          image: registry.k8s.io/sig-storage/livenessprobe:v2.19.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
-            - --http-endpoint=0.0.0.0:9809
+            - --http-endpoint=0.0.0.0:{{ .Values.nodeLivenessPort }}
             - --probe-timeout=3s
             - --v=2
           securityContext:
@@ -70,8 +77,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - --endpoint=unix:///csi/csi.sock
-            # Every process carries the Kubernetes node name it runs on; the
-            # role flag tells a per-node worker from the cluster controller.
             - --role=node
             - --nodeid=$(KUBE_NODE_NAME)
             - --ip=$(STORAGE_IPS)
@@ -79,6 +84,9 @@ spec:
             - --api-key=$(STORAGE_API_KEY)
             - --data-ip=$(STORAGE_DATA_IP)
             - --log={{ .Values.logLevel | quote }}
+            {{- if .Values.driverNamePrefix }}
+            - --driver-prefix={{ .Values.driverNamePrefix }}
+            {{- end }}
           env:
             - name: KUBE_NODE_NAME
               valueFrom:
@@ -109,13 +117,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 9809
+              port: {{ .Values.nodeLivenessPort }}
             initialDelaySeconds: 10
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 5
           securityContext:
-            # Mounts are executed through the image's /host chroot wrappers.
             privileged: true
             capabilities:
               add: ["SYS_CHROOT", "SYS_ADMIN"]
@@ -136,7 +143,7 @@ spec:
       volumes:
         - name: socket-dir
           hostPath:
-            path: /var/lib/kubelet/plugins/nfs.csi.ngxstorage.com
+            path: /var/lib/kubelet/plugins/{{ include "ngxstorage.driverName" . }}
             type: DirectoryOrCreate
         - name: registration-dir
           hostPath:
