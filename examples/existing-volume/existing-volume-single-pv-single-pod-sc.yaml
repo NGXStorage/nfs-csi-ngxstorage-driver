@@ -1,0 +1,7 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: existing-volume-single-pv-single-pod-sc
+provisioner: nfs.csi.ngxstorage.com
+volumeBindingMode: Immediate
+reclaimPolicy: Delete

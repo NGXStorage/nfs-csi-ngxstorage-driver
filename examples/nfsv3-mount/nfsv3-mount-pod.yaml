@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfsv3-mount-pod
+  namespace: default
+spec:
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: nfsv3-mount-pvc
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: nfsv3-mount-pvc
+    persistentVolumeClaim:
+      claimName: nfsv3-mount-pvc

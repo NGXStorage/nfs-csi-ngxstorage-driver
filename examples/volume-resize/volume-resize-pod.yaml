@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-resize-pod
+  namespace: default
+spec:
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: volume-resize-pvc
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: volume-resize-pvc
+    persistentVolumeClaim:
+      claimName: volume-resize-pvc

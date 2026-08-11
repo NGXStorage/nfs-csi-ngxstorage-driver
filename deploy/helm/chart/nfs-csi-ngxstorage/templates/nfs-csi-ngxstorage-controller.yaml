@@ -1,0 +1,191 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-csi-ngxstorage-controller
+  namespace: nfs-csi-ngxstorage
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: controller
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nfs-csi-ngxstorage
+      app.kubernetes.io/component: controller
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nfs-csi-ngxstorage
+        app.kubernetes.io/component: controller
+    spec:
+      serviceAccountName: nfs-csi-ngxstorage-controller
+      priorityClassName: system-cluster-critical
+      nodeSelector:
+        kubernetes.io/os: linux
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+        - key: CriticalAddonsOnly
+          operator: Exists
+      securityContext: {}
+      containers:
+        - name: external-provisioner
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a64dccdc647ac1c0f0ca29b74e15b328a3f62f0a46d2a563c6e2841f9ecb01d1
+          imagePullPolicy: IfNotPresent
+          args:
+            - --csi-address=/csi/csi.sock
+            - --leader-election
+            - --leader-election-namespace=$(POD_NAMESPACE)
+            - --timeout=300s
+            - --feature-gates=VolumeAttributesClass=false
+            - --v=2
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: external-attacher
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:077da8b01b8d7e4d0f753e99fcf41d4a2091d6865c205f64c8fecec1575241d4
+          imagePullPolicy: IfNotPresent
+          args:
+            - --csi-address=/csi/csi.sock
+            - --leader-election
+            - --leader-election-namespace=$(POD_NAMESPACE)
+            - --timeout=300s
+            - --v=2
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: external-resizer
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:24ad86c3b010d127686550e0cfa1cfe4ae9f4d64778cef6c244fa48d0617623d
+          imagePullPolicy: IfNotPresent
+          args:
+            - --csi-address=/csi/csi.sock
+            - --leader-election
+            - --leader-election-namespace=$(POD_NAMESPACE)
+            - --timeout=300s
+            - --feature-gates=VolumeAttributesClass=false
+            - --v=2
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: external-snapshotter
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:1b9ebae30a269e6511597904ff480515caad89dbe11477f3a251dec58f784c92
+          imagePullPolicy: IfNotPresent
+          args:
+            - --csi-address=/csi/csi.sock
+            - --leader-election
+            - --leader-election-namespace=$(POD_NAMESPACE)
+            - --timeout=300s
+            - --v=2
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: liveness-probe
+          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:ccf6bdeaf2a070edacb7c24a4e46af27a65dc25faf0fb4edc37cdfa922109b67
+          imagePullPolicy: IfNotPresent
+          args:
+            - --csi-address=/csi/csi.sock
+            - --http-endpoint=0.0.0.0:9808
+            - --probe-timeout=3s
+            - --v=2
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: nfs-csi-ngxstorage
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --endpoint=unix:///csi/csi.sock
+            - --role=controller
+            - --ip=$(STORAGE_IPS)
+            - --pool-name=$(STORAGE_POOL_NAME)
+            - --api-key=$(STORAGE_API_KEY)
+            - --data-ip=$(STORAGE_DATA_IP)
+            - --log={{ .Values.logLevel | quote }}
+          env:
+            - name: STORAGE_IPS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: storage-ips
+            - name: STORAGE_POOL_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: pool-name
+            - name: STORAGE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: api-key
+            - name: STORAGE_DATA_IP
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: data-ip
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9808
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+      volumes:
+        - name: socket-dir
+          emptyDir: {}

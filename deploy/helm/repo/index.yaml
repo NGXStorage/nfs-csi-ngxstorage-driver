@@ -1,0 +1,31 @@
+apiVersion: v1
+entries:
+  nfs-csi-ngxstorage:
+  - annotations:
+      charts.openshift.io/name: NGX Storage NFS CSI Driver
+      charts.openshift.io/provider: NGX Storage
+      charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    apiVersion: v2
+    appVersion: 2.0.0
+    created: "2026-08-11T15:03:25.496248988+03:00"
+    description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
+      Manager
+    digest: b52fa159faeac574f6b20dd802ce4a5a870c28ba1cf883979860a86da630659f
+    home: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    keywords:
+    - csi
+    - nfs
+    - ngxstorage
+    - storage
+    kubeVersion: '>=1.28.0'
+    maintainers:
+    - email: k8s@ngxstorage.com
+      name: NGX Storage
+    name: nfs-csi-ngxstorage
+    sources:
+    - https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    type: application
+    urls:
+    - https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/nfs-csi-ngxstorage-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-08-11T15:03:25.495791873+03:00"

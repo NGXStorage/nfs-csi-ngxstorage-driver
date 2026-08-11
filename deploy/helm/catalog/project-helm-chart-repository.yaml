@@ -1,0 +1,20 @@
+# OpenShift ProjectHelmChartRepository (per-project) — makes the NGX NFS CSI
+# chart available in the Developer Catalog for a single project/namespace.
+#
+# Usage:
+#   oc apply -f deploy/helm/catalog/project-helm-chart-repository.yaml
+#
+# For cluster-wide scope, see helm-chart-repository.yaml.
+# Replace the URL with your actual GitHub Pages / GitLab Pages URL.
+---
+apiVersion: helm.openshift.io/v1beta1
+kind: ProjectHelmChartRepository
+metadata:
+  name: nfs-csi-ngxstorage
+  namespace: nfs-csi-ngxstorage
+spec:
+  name: NGX Storage NFS CSI
+  description: NGX Storage NFS CSI Driver Helm Charts
+  disabled: false
+  connectionConfig:
+    url: https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/

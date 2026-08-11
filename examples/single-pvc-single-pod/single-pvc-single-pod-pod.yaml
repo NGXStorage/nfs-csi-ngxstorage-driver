@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: single-pvc-single-pod-pod
+  namespace: default
+spec:
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: single-pvc-single-pod-pvc
+      mountPath: /data # any path
+      readOnly: false # true, false
+  volumes:
+  - name: single-pvc-single-pod-pvc
+    persistentVolumeClaim:
+      claimName: single-pvc-single-pod-pvc

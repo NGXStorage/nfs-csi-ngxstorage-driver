@@ -1,0 +1,18 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: existing-volume-single-pv-single-pod-pv
+  annotations:
+    pv.kubernetes.io/provisioned-by: nfs.csi.ngxstorage.com
+spec:
+  storageClassName: existing-volume-single-pv-single-pod-sc
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  csi:
+    driver: nfs.csi.ngxstorage.com
+    volumeHandle: nfs.csi.ngxstorage.com.existing-volume_test
+    volumeAttributes:
+      nfsvers: "nfsvers=3" # nfsvers=3, nfsvers=4.1, nfsvers=4.2
+      readonly: "false" # true, false

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: multi-node-rwx-pvc
+spec:
+  accessModes:
+    # ReadWriteMany: the same volume is mounted by pods on different nodes.
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: multi-node-rwx-sc

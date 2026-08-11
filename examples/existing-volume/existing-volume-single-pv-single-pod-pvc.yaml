@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: existing-volume-single-pv-single-pod-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  # name of the PersistentVolume to claim
+  volumeName: existing-volume-single-pv-single-pod-pv 
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: existing-volume-single-pv-single-pod-sc

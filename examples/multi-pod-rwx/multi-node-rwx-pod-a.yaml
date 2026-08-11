@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-node-rwx-pod-a
+  namespace: default
+spec:
+  # Pin to a worker so we can prove two different nodes mount the same volume.
+  nodeSelector:
+    kubernetes.io/hostname: worker0.ocp.ngxlabocp.com
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: multi-node-rwx-pvc
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: multi-node-rwx-pvc
+    persistentVolumeClaim:
+      claimName: multi-node-rwx-pvc

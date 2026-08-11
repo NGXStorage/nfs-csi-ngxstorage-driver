@@ -1,0 +1,27 @@
+# NGX Storage NFS CSI Driver — Helm values
+#
+# Platform selection: set openshift.enabled=true for OpenShift (adds SCC RBAC).
+
+openshift:
+  enabled: false
+
+image:
+  repository: quay.io/ngxstorage/nfs-csi-ngxstorage
+  tag: "2.0.0-2"
+  pullPolicy: IfNotPresent
+
+# Driver console verbosity: debug, info, warn, error, dpanic, panic, fatal.
+logLevel: info
+
+# Backend secret. Prefer an existing Secret in production.
+# Set create=true only when managing the Secret through Helm.
+secret:
+  create: false
+  name: nfs-csi-ngxstorage-config
+  storageIPs: ""
+  poolName: ""
+  apiKey: ""
+  dataIP: ""
+
+snapshotClass:
+  create: true
