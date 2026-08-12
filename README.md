@@ -65,7 +65,7 @@ the latest upstream CSI sidecars.
 
 | Kubernetes Release | CSI Driver Version | Validation |
 |--------------------|--------------------|------------|
-| 1.24 – 1.36        | v2.0.1+            | ✅ bind + dd + capacity |
+| 1.24 – 1.36        | v2.0.2+            | ✅ bind + dd + capacity |
 
 OpenShift 4.20 validated on the same driver version.
 
@@ -243,7 +243,7 @@ helm install nfs-csi-ngxstorage nfs-csi-ngxstorage/nfs-csi-ngxstorage \
 helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
   --namespace nfs-csi-ngxstorage --create-namespace \
   --set image.repository=quay.io/ngxstorage/nfs-csi-ngxstorage \
-  --set image.tag=2.0.1-1
+  --set image.tag=2.0.2-1
 ```
 
 For OpenShift, add `--set openshift.enabled=true` to enable SCC RBAC bindings.
@@ -266,7 +266,7 @@ helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
 |---------------------------|-----------------------------------------|----------------------------------------------------|
 | `openshift.enabled`       | `false`                                 | Enable OpenShift SCC RBAC                          |
 | `image.repository`        | `quay.io/ngxstorage/nfs-csi-ngxstorage` | Driver image repository                            |
-| `image.tag`               | `2.0.1-1`                               | Driver image tag                                   |
+| `image.tag`               | `2.0.2-1`                               | Driver image tag                                   |
 | `image.pullPolicy`        | `IfNotPresent`                          | Image pull policy                                  |
 | `logLevel`                | `info`                                  | Driver log level (debug/info/warn/error)           |
 | `driverNamePrefix`        | `""`                                    | Optional prefix → `<prefix>.nfs.csi.ngxstorage.com`|
