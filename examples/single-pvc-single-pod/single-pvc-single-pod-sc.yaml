@@ -7,7 +7,6 @@ parameters:
   blocksize: "128k" # 4k, 8k, 16k, 32k, 64k, 128k, 256k, 512k, 1024k
   deduplication: "on" # "on", "off"
   compression: "on" # "on", "off"
-  thin_provision: "on" # "on", "off"
 volumeBindingMode: Immediate
 reclaimPolicy: Delete
 mountOptions:
