@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hard-quota-pod
+  namespace: default
+spec:
+  containers:
+  - name: client
+    image: nginx
+    volumeMounts:
+    - name: hard-quota-pvc
+      mountPath: /data
+  volumes:
+  - name: hard-quota-pvc
+    persistentVolumeClaim:
+      claimName: hard-quota-pvc
