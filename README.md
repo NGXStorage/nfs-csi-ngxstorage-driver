@@ -59,9 +59,15 @@ See [examples/multi-pod-rwx/](examples/multi-pod-rwx/) for a working example.
 
 ## Kubernetes Compatibility
 
-| Kubernetes Release | CSI Driver Version |
-|--------------------|--------------------|
-| 1.28+              | v2.0.0+            |
+Validated end-to-end (PVC bind → `dd` write → backend capacity) on every
+patch release of Kubernetes 1.24 through 1.36 with kubeadm + containerd and
+the latest upstream CSI sidecars.
+
+| Kubernetes Release | CSI Driver Version | Validation |
+|--------------------|--------------------|------------|
+| 1.24 – 1.36        | v2.0.1+            | ✅ bind + dd + capacity |
+
+OpenShift 4.20 validated on the same driver version.
 
 ## Requirements
 
@@ -71,16 +77,21 @@ See [examples/multi-pod-rwx/](examples/multi-pod-rwx/) for a working example.
 - A storage pool created and accessible
 - NFS service enabled on the NGX appliance
 - Network connectivity from Kubernetes worker nodes to the NGX NFS data IP
+- For a second backend (e.g. a 40G data path): its management API IPs must be
+  routable from the cluster. Management and data IPs can differ; the
+  management API is used for provisioning and the data IP for NFS mounts.
 
 ### Nodes
 
-- Linux worker nodes (tested on Ubuntu, RHEL 9, Pardus)
+- Linux worker nodes (tested on Ubuntu 26.04, RHEL 9)
 - NFS client packages (`nfs-common` on Debian/Ubuntu, `nfs-utils` on RHEL)
+- `hostNetwork`/`hostPID`/`hostIPC` for the validated NFSv3/`nolock` path
 
 ### Permissions
 
 - The driver runs with privileged security context on nodes (required for NFS mount operations via host chroot wrappers)
-- HostPID, hostNetwork, and hostIPC are required for NFSv3/rpc-statd compatibility
+- On OpenShift, the node service account must use the `privileged` SCC (the
+  chart and raw manifests grant this)
 
 ## Installing to Kubernetes
 
@@ -232,7 +243,7 @@ helm install nfs-csi-ngxstorage nfs-csi-ngxstorage/nfs-csi-ngxstorage \
 helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
   --namespace nfs-csi-ngxstorage --create-namespace \
   --set image.repository=quay.io/ngxstorage/nfs-csi-ngxstorage \
-  --set image.tag=2.0.0-2
+  --set image.tag=2.0.1-1
 ```
 
 For OpenShift, add `--set openshift.enabled=true` to enable SCC RBAC bindings.
@@ -251,16 +262,67 @@ helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
 
 ### Helm values
 
-| Parameter              | Default                                 | Description                              |
-|------------------------|-----------------------------------------|------------------------------------------|
-| `openshift.enabled`    | `false`                                 | Enable OpenShift SCC RBAC                |
-| `image.repository`     | `quay.io/ngxstorage/nfs-csi-ngxstorage` | Driver image repository                  |
-| `image.tag`            | `2.0.0-2`                               | Driver image tag                         |
-| `image.pullPolicy`     | `IfNotPresent`                          | Image pull policy                        |
-| `logLevel`             | `info`                                  | Driver log level (debug/info/warn/error) |
-| `secret.create`        | `false`                                 | Create the backend secret via Helm       |
-| `secret.name`          | `nfs-csi-ngxstorage-config`             | Secret name                              |
-| `snapshotClass.create` | `true`                                  | Create VolumeSnapshotClass               |
+| Parameter                 | Default                                 | Description                                        |
+|---------------------------|-----------------------------------------|----------------------------------------------------|
+| `openshift.enabled`       | `false`                                 | Enable OpenShift SCC RBAC                          |
+| `image.repository`        | `quay.io/ngxstorage/nfs-csi-ngxstorage` | Driver image repository                            |
+| `image.tag`               | `2.0.1-1`                               | Driver image tag                                   |
+| `image.pullPolicy`        | `IfNotPresent`                          | Image pull policy                                  |
+| `logLevel`                | `info`                                  | Driver log level (debug/info/warn/error)           |
+| `driverNamePrefix`        | `""`                                    | Optional prefix → `<prefix>.nfs.csi.ngxstorage.com`|
+| `namespace`               | `nfs-csi-ngxstorage`                    | Namespace for driver resources                     |
+| `nodePlacement`           | `all`                                   | Node DaemonSet placement: `all`/`master`/`worker`  |
+| `controllerPlacement`     | `master`                                | Controller placement: `master`/`worker`/`all`      |
+| `controllerLivenessPort`  | `9808`                                  | Controller liveness probe port                     |
+| `nodeLivenessPort`        | `9809`                                  | Node liveness probe port                           |
+| `secret.create`           | `false`                                 | Create the backend secret via Helm                 |
+| `secret.name`             | `nfs-csi-ngxstorage-config`             | Secret name                                        |
+| `snapshotClass.create`    | `true`                                  | Create VolumeSnapshotClass                         |
+
+### Running two driver instances (1G + 40G backends)
+
+A single cluster can host two NGX CSI driver instances serving different
+backends. Each must use a distinct `driverNamePrefix`, `namespace`, and set
+`nodePlacement`/`controllerPlacement` as needed. The final driver name is
+`<prefix>.nfs.csi.ngxstorage.com`; leave `driverNamePrefix` empty to keep the
+canonical `nfs.csi.ngxstorage.com`.
+
+1G backend (management `192.168.1.201/202`, pool `openstackSSD1`, data
+`10.10.10.202`) on all nodes:
+
+```bash
+helm install nfs-csi-ngxstorage-1g deploy/helm/chart/nfs-csi-ngxstorage/ \
+  --namespace nfs-csi-ngxstorage-1g --create-namespace \
+  --set-string driverNamePrefix=201 \
+  --set nodePlacement=all \
+  --set secret.create=true \
+  --set secret.storageIPs='192.168.1.201,192.168.1.202' \
+  --set secret.poolName='openstackSSD1' \
+  --set secret.dataIP='10.10.10.202' \
+  --set secret.apiKey='<api-key>'
+```
+
+40G backend (management `192.168.1.205/206`, pool `TRNPOOL`, data
+`10.10.20.206`) on worker nodes only. Liveness ports must differ so the two
+hostNetwork node pods on the same worker do not collide:
+
+```bash
+helm install nfs-csi-ngxstorage-40g deploy/helm/chart/nfs-csi-ngxstorage/ \
+  --namespace nfs-csi-ngxstorage-40g --create-namespace \
+  --set-string driverNamePrefix=205 \
+  --set nodePlacement=worker \
+  --set controllerPlacement=master \
+  --set nodeLivenessPort=9819 \
+  --set controllerLivenessPort=9818 \
+  --set secret.create=true \
+  --set secret.storageIPs='192.168.1.205,192.168.1.206' \
+  --set secret.poolName='TRNPOOL' \
+  --set secret.dataIP='10.10.20.206' \
+  --set secret.apiKey='<api-key>'
+```
+
+> Note: `--set-string` is required for numeric-looking prefixes (`201`, `205`);
+> a plain `--set` coerces them to numbers.
 
 ## OpenShift Developer Catalog
 

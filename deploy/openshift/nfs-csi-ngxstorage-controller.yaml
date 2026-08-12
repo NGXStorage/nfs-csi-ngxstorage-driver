@@ -39,7 +39,7 @@ spec:
       securityContext: {}
       containers:
         - name: external-provisioner
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:a64dccdc647ac1c0f0ca29b74e15b328a3f62f0a46d2a563c6e2841f9ecb01d1
+          image: registry.k8s.io/sig-storage/csi-provisioner:v6.3.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
@@ -61,7 +61,7 @@ spec:
             - name: socket-dir
               mountPath: /csi
         - name: external-attacher
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:077da8b01b8d7e4d0f753e99fcf41d4a2091d6865c205f64c8fecec1575241d4
+          image: registry.k8s.io/sig-storage/csi-attacher:v4.12.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
@@ -82,7 +82,7 @@ spec:
             - name: socket-dir
               mountPath: /csi
         - name: external-resizer
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:24ad86c3b010d127686550e0cfa1cfe4ae9f4d64778cef6c244fa48d0617623d
+          image: registry.k8s.io/sig-storage/csi-resizer:v2.2.1
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
@@ -104,7 +104,7 @@ spec:
             - name: socket-dir
               mountPath: /csi
         - name: external-snapshotter
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:1b9ebae30a269e6511597904ff480515caad89dbe11477f3a251dec58f784c92
+          image: registry.k8s.io/sig-storage/csi-snapshotter:v8.6.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
@@ -125,7 +125,7 @@ spec:
             - name: socket-dir
               mountPath: /csi
         - name: liveness-probe
-          image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:ccf6bdeaf2a070edacb7c24a4e46af27a65dc25faf0fb4edc37cdfa922109b67
+          image: registry.k8s.io/sig-storage/livenessprobe:v2.19.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
