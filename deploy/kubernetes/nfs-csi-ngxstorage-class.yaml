@@ -21,5 +21,4 @@ parameters:
   blocksize: 128k
   deduplication: "on"
   compression: "on"
-  thin_provision: "on"
   permissions: "111111101"
