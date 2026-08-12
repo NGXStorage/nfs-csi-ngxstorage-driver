@@ -5,6 +5,10 @@
 # rsize/wsize set 1 MiB read/write buffers. hard ensures the mount retries
 # indefinitely instead of returning I/O errors.
 #
+# nconnect requires NFSv4.2 (vers=4.2) — it is NOT supported on NFSv3 mounts.
+# The NGX Storage NFS service must have NFSv4 enabled in the management UI
+# (NFSv3 is the default out of the box).
+#
 # References:
 #   https://www.ngxstorage.com/improving-nfs-read-performance-overcoming-protocol-stack-challenges/
 #   https://kb.ngxstorage.com/knowledge-base/nfs-client-configuration-best-practices-on-linux/
@@ -26,5 +30,5 @@ mountOptions:
   - nconnect=16
   - rsize=1048576
   - wsize=1048576
-  - vers=3
+  - vers=4.2
   - hard

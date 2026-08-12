@@ -71,8 +71,10 @@ practices:
 A pre-configured high-performance StorageClass (`nconnect=16`,
 `rsize/wsize=1MiB`, `hard`) is at [examples/nfs-performance/](examples/nfs-performance/).
 
-> `nconnect` requires Linux kernel 5.3+ on worker nodes. Start with
-> `nconnect=8` on 10GbE; the kernel maximum is 16.
+> `nconnect` requires NFSv4.2 and Linux kernel 5.3+ on worker nodes — it is
+> not supported on NFSv3 mounts. NGX Storage must have NFSv4 enabled (the
+> management UI defaults to NFSv3). Start with `nconnect=8` on 10GbE; the
+> kernel maximum is 16.
 
 ## Kubernetes Compatibility
 
