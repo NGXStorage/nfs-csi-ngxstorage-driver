@@ -1,0 +1,30 @@
+# High-throughput StorageClass using NGX Storage NFS best practices.
+#
+# The nconnect mount option opens multiple parallel TCP connections to the
+# NFS server, which dramatically improves throughput on 10GbE+ links.
+# rsize/wsize set 1 MiB read/write buffers. hard ensures the mount retries
+# indefinitely instead of returning I/O errors.
+#
+# References:
+#   https://www.ngxstorage.com/improving-nfs-read-performance-overcoming-protocol-stack-challenges/
+#   https://kb.ngxstorage.com/knowledge-base/nfs-client-configuration-best-practices-on-linux/
+#
+# Note: nconnect requires Linux kernel 5.3+ on the worker nodes. Start with
+# nconnect=8 on 10GbE, nconnect=16 on 25GbE+ (kernel max is 16).
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-performance-sc
+provisioner: nfs.csi.ngxstorage.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+parameters:
+  blocksize: "128k"
+  compression: "on"
+mountOptions:
+  - nconnect=16
+  - rsize=1048576
+  - wsize=1048576
+  - vers=3
+  - hard

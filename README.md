@@ -57,6 +57,23 @@ spec:
 
 See [examples/multi-pod-rwx/](examples/multi-pod-rwx/) for a working example.
 
+### NFS Performance Tuning
+
+For high-throughput workloads (10GbE+), the `nconnect` mount option
+parallelizes NFS traffic across multiple TCP connections, delivering ~3× read
+throughput on 40G links (≈4.7 GiB/s vs ≈1.5 GiB/s with a single connection).
+See the NGX Storage knowledge base for detailed benchmarks and best
+practices:
+
+- [Improving NFS Read Performance: Overcoming Protocol Stack Challenges](https://www.ngxstorage.com/improving-nfs-read-performance-overcoming-protocol-stack-challenges/)
+- [NFS Client Configuration Best Practices on Linux](https://kb.ngxstorage.com/knowledge-base/nfs-client-configuration-best-practices-on-linux/)
+
+A pre-configured high-performance StorageClass (`nconnect=16`,
+`rsize/wsize=1MiB`, `hard`) is at [examples/nfs-performance/](examples/nfs-performance/).
+
+> `nconnect` requires Linux kernel 5.3+ on worker nodes. Start with
+> `nconnect=8` on 10GbE; the kernel maximum is 16.
+
 ## Kubernetes Compatibility
 
 Validated end-to-end (PVC bind → `dd` write → backend capacity) on every

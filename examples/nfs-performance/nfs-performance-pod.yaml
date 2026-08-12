@@ -1,0 +1,29 @@
+# High-throughput pod using the nfs-performance StorageClass.
+#
+# Benchmark with fio from inside the pod:
+#
+#   kubectl exec -it nfs-performance-pod -- sh -c \
+#     "apt-get update && apt-get install -y fio && \
+#      fio --rw=read --ioengine=libaio --bs=128k --iodepth=128 \
+#          --size=2g --runtime=60 --time_based --filename=/data/fio \
+#          --group_reporting"
+#
+# With nconnect=16 on a 40G link, sequential reads reach ~4.7 GiB/s
+# (vs ~1.5 GiB/s with a single TCP connection).
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-performance-pod
+  namespace: default
+spec:
+  containers:
+  - name: nfs-performance
+    image: ubuntu:22.04
+    command: ["/bin/sh", "-c", "apt-get update -qq && apt-get install -y -qq fio nfs-common && sleep infinity"]
+    volumeMounts:
+    - name: nfs-performance-pvc
+      mountPath: /data
+  volumes:
+  - name: nfs-performance-pvc
+    persistentVolumeClaim:
+      claimName: nfs-performance-pvc
