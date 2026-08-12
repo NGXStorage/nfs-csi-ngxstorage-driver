@@ -16,7 +16,7 @@
           "type": "string",
           "title": "Image tag",
           "description": "Reviewed immutable release tag or digest. Do not use :latest in production.",
-          "default": "2.0.2-1"
+          "default": "2.0.3-1"
         },
         "pullPolicy": {
           "type": "string",
