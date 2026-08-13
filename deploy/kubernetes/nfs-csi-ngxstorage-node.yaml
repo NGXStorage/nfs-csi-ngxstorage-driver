@@ -79,6 +79,11 @@ spec:
             - --api-key=$(STORAGE_API_KEY)
             - --data-ip=$(STORAGE_DATA_IP)
             - --log=info
+            # Optional distinct CSI identity for a second NGX Storage backend
+            # on the same cluster. Set the same value on the controller and
+            # every node manifest and in the StorageClass provisioner; empty
+            # keeps the canonical nfs.csi.ngxstorage.com.
+            # - --driver-prefix=205
           env:
             - name: KUBE_NODE_NAME
               valueFrom:
