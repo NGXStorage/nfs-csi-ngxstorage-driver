@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/component: node
       {{- if .Values.openshift.enabled }}
       annotations:
-        openshift.io/required-scc: nfs-csi-ngxstorage-node-scc
+        openshift.io/required-scc: {{ include "ngxstorage.fullname" . }}-node-scc
       {{- end }}
     spec:
       serviceAccountName: {{ include "ngxstorage.fullname" . }}-node

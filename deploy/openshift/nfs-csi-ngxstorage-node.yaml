@@ -20,12 +20,16 @@ spec:
       labels:
         app.kubernetes.io/name: nfs-csi-ngxstorage
         app.kubernetes.io/component: node
+      # Pin the custom SCC (created in nfs-csi-ngxstorage-rbac.yaml) so the
+      # node pod never falls back to the cluster-wide privileged SCC.
+      annotations:
+        openshift.io/required-scc: nfs-csi-ngxstorage-node-scc
     spec:
       serviceAccountName: nfs-csi-ngxstorage-node
       automountServiceAccountToken: false
       priorityClassName: system-node-critical
       # NGX defaults to NFSv3/nolock. Keep host PID/IPC for rpc-statd/nfsd
-      # compatibility; this matches the validated reference NFS node profile.
+      # compatibility with the NFSv3 host profile.
       hostPID: true
       hostNetwork: true
       hostIPC: true

@@ -32,16 +32,13 @@ rules:
     resources: ["persistentvolumeclaims/status"]
     verbs: ["patch", "update"]
   - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["get", "list", "watch"]
-  - apiGroups: [""]
     resources: ["nodes"]
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["events"]
-    verbs: ["get", "list", "watch", "create", "update", "patch"]
+    verbs: ["list", "watch", "create", "update", "patch"]
   - apiGroups: ["storage.k8s.io"]
-    resources: ["storageclasses", "csinodes", "volumeattributesclasses"]
+    resources: ["storageclasses", "csinodes"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["storage.k8s.io"]
     resources: ["volumeattachments"]
@@ -97,26 +94,37 @@ roleRef:
   name: {{ include "ngxstorage.fullname" . }}-leader-election
 {{- if .Values.openshift.enabled }}
 ---
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+# NGX NFS CSI node SCC: a clone of the privileged SCC scoped to the node
+# ServiceAccount only. Avoids granting the cluster-wide privileged SCC to any
+# pod. The node DaemonSet needs hostNetwork/PID/IPC for the NFSv3 rpc-statd
+# path and SYS_ADMIN+SYS_CHROOT for the /host mount and chroot wrappers.
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
 metadata:
   name: {{ include "ngxstorage.fullname" . }}-node-scc
-rules:
-  - apiGroups: ["security.openshift.io"]
-    resources: ["securitycontextconstraints"]
-    resourceNames: ["privileged"]
-    verbs: ["use"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: {{ include "ngxstorage.fullname" . }}-node-scc
-subjects:
-  - kind: ServiceAccount
-    name: {{ include "ngxstorage.fullname" . }}-node
-    namespace: {{ .Values.namespace }}
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: {{ include "ngxstorage.fullname" . }}-node-scc
+allowHostDirVolumePlugin: true
+allowHostIPC: true
+allowHostNetwork: true
+allowHostPID: true
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+- SYS_ADMIN
+- SYS_CHROOT
+fsGroup:
+  type: RunAsAny
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+users:
+- system:serviceaccount:{{ .Values.namespace }}:{{ include "ngxstorage.fullname" . }}-node
+volumes:
+- hostPath
+- downwardAPI
+- projected
+- emptyDir
 {{- end }}

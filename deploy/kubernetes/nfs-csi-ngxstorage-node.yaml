@@ -25,7 +25,7 @@ spec:
       automountServiceAccountToken: false
       priorityClassName: system-node-critical
       # NGX defaults to NFSv3/nolock. Keep host PID/IPC for rpc-statd/nfsd
-      # compatibility; this matches the validated reference NFS node profile.
+      # compatibility.
       hostPID: true
       hostNetwork: true
       hostIPC: true
