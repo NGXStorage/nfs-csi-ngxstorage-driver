@@ -9,6 +9,8 @@ on:
       - main
     tags:
       - 'v*'
+    paths-ignore:
+      - 'deploy/helm/repo/**'
   workflow_dispatch:
 
 permissions:
@@ -82,6 +84,19 @@ jobs:
         run: |
           helm repo index deploy/helm/repo \
             --url https://ngxstorage.github.io/nfs-csi-ngxstorage-driver
+      - name: Commit packaged chart to main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [[ -z "$(git status --porcelain -- deploy/helm/repo)" ]]; then
+            echo "Helm repository artifacts are already current"
+            exit 0
+          fi
+          chart_version="$(helm show chart deploy/helm/chart/nfs-csi-ngxstorage | awk '/^version:/ {print $2}')"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deploy/helm/repo/index.yaml "deploy/helm/repo/nfs-csi-ngxstorage-${chart_version}.tgz"
+          git commit -m "chore(helm): publish chart ${chart_version}"
+          git push origin HEAD:main
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
