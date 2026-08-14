@@ -43,6 +43,14 @@ jobs:
         run: |
           helm template test deploy/helm/chart/nfs-csi-ngxstorage \
             --set openshift.enabled=true > /dev/null
+      - name: External-resizer RBAC contract
+        run: |
+          helm template test deploy/helm/chart/nfs-csi-ngxstorage > /tmp/rendered.yaml
+          if ! grep -A1 'resources: \["pods"\]' /tmp/rendered.yaml \
+            | grep -Fq 'verbs: ["get", "list", "watch"]'; then
+            echo "controller RBAC must grant pods get/list/watch for external-resizer" >&2
+            exit 1
+          fi
       - name: Namespace contract
         run: |
           rendered="$(helm template test deploy/helm/chart/nfs-csi-ngxstorage \
