@@ -7,10 +7,10 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3-3
-    created: "2026-08-14T15:50:50.716110464+03:00"
+    created: "2026-08-14T12:51:28.723682825Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
-    digest: 5c3acfbf9dc85fb71d3fca1167e4c89f068c348a8af1429410fa92e0819d39c7
+    digest: ba57e9f8a26fbfd5b174e14b5dd0ca9e3b476f74d2580a63edc4f66efecfa936
     home: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     keywords:
     - csi
@@ -34,7 +34,7 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3-3
-    created: "2026-08-14T15:50:50.715852411+03:00"
+    created: "2026-08-14T12:51:28.723383166Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 3856309ed5e8d36ae951b53dfeb7e18e8693bb3348a69416548575dc1f2daa6d
@@ -61,7 +61,7 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T15:50:50.715625994+03:00"
+    created: "2026-08-14T12:51:28.723051029Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 721cbbc4db08262bf688c782a1751d6e551ce9ab28faba1171cb8825a41f37ee
@@ -88,7 +88,7 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T15:50:50.715373613+03:00"
+    created: "2026-08-14T12:51:28.722745513Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 8b29ec5a51e20f1c13484b58dbf388603a8f1310f553c88ec464e7969c02d05d
@@ -109,4 +109,4 @@ entries:
     urls:
     - https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/nfs-csi-ngxstorage-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-14T15:50:50.714998339+03:00"
+generated: "2026-08-14T12:51:28.722295449Z"
