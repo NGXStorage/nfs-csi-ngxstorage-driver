@@ -7,7 +7,7 @@ openshift:
 
 image:
   repository: quay.io/ngxstorage/nfs-csi-ngxstorage
-  tag: "2.0.3-1"
+  tag: "2.0.3-3"
   pullPolicy: IfNotPresent
 
 # Driver console verbosity: debug, info, warn, error, dpanic, panic, fatal.

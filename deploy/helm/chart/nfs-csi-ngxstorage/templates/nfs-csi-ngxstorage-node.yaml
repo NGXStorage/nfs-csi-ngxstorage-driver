@@ -42,7 +42,7 @@ spec:
         - operator: Exists
       containers:
         - name: node-driver-registrar
-          image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.17.0
+          image: quay.io/ngxstorage/csi-node-driver-registrar:v2.17.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock
@@ -58,7 +58,7 @@ spec:
             - name: registration-dir
               mountPath: /registration
         - name: liveness-probe
-          image: registry.k8s.io/sig-storage/livenessprobe:v2.19.0
+          image: quay.io/ngxstorage/livenessprobe:v2.19.0
           imagePullPolicy: IfNotPresent
           args:
             - --csi-address=/csi/csi.sock

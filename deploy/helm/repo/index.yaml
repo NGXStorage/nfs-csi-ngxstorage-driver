@@ -6,8 +6,35 @@ entries:
       charts.openshift.io/provider: NGX Storage
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
+    appVersion: 2.0.3-3
+    created: "2026-08-14T15:42:05.033252476+03:00"
+    description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
+      Manager
+    digest: b69ad10bc45380ce6e6f39bd326ca20185684f2dc45cf6747d5e9e93659e15ac
+    home: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    keywords:
+    - csi
+    - nfs
+    - ngxstorage
+    - storage
+    kubeVersion: '>=1.28.0'
+    maintainers:
+    - email: k8s@ngxstorage.com
+      name: NGX Storage
+    name: nfs-csi-ngxstorage
+    sources:
+    - https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    type: application
+    urls:
+    - https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/nfs-csi-ngxstorage-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      charts.openshift.io/name: NGX Storage NFS CSI Driver
+      charts.openshift.io/provider: NGX Storage
+      charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
+    apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T12:28:45.402599131Z"
+    created: "2026-08-14T15:42:05.032984027+03:00"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 721cbbc4db08262bf688c782a1751d6e551ce9ab28faba1171cb8825a41f37ee
@@ -34,7 +61,7 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T12:28:45.402213573Z"
+    created: "2026-08-14T15:42:05.03273083+03:00"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 8b29ec5a51e20f1c13484b58dbf388603a8f1310f553c88ec464e7969c02d05d
@@ -55,4 +82,4 @@ entries:
     urls:
     - https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/nfs-csi-ngxstorage-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-14T12:28:45.401465451Z"
+generated: "2026-08-14T15:42:05.032341463+03:00"

@@ -6,12 +6,12 @@
 #
 # Usage:
 #   GITHUB_PAGES_URL=https://ngxstorage.github.io/nfs-csi-ngxstorage-driver \
-#     bash scripts/publish-helm-repo.sh
+#     bash deploy/helm/scripts/publish-helm-repo.sh
 #
-# Output: helm-repo/index.yaml + helm-repo/*.tgz  (committed to gh-pages branch)
+# Output: deploy/helm/repo/index.yaml + deploy/helm/repo/*.tgz
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 CHART_DIR="${REPO_ROOT}/deploy/helm/chart/nfs-csi-ngxstorage"
 HELM_REPO_DIR="${REPO_ROOT}/deploy/helm/repo"
 PAGES_URL="${GITHUB_PAGES_URL:-https://ngxstorage.github.io/nfs-csi-ngxstorage-driver}"
