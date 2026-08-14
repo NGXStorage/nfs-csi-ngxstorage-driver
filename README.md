@@ -289,7 +289,6 @@ helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
 | `image.pullPolicy`        | `IfNotPresent`                          | Image pull policy                                  |
 | `logLevel`                | `info`                                  | Driver log level (debug/info/warn/error)           |
 | `driverNamePrefix`        | `""`                                    | Optional prefix → `<prefix>.nfs.csi.ngxstorage.com`|
-| `namespace`               | `nfs-csi-ngxstorage`                    | Namespace for driver resources                     |
 | `nodePlacement`           | `all`                                   | Node DaemonSet placement: `all`/`master`/`worker`  |
 | `controllerPlacement`     | `master`                                | Controller placement: `master`/`worker`/`all`      |
 | `controllerLivenessPort`  | `9808`                                  | Controller liveness probe port                     |
@@ -301,7 +300,8 @@ helm install nfs-csi-ngxstorage deploy/helm/chart/nfs-csi-ngxstorage/ \
 ### Running two driver instances (1G + 40G backends)
 
 A single cluster can host two NGX CSI driver instances serving different
-backends. Each must use a distinct `driverNamePrefix`, `namespace`, and set
+backends. Each must use a distinct `driverNamePrefix` and Helm release
+namespace, and set
 `nodePlacement`/`controllerPlacement` as needed. The final driver name is
 `<prefix>.nfs.csi.ngxstorage.com`; leave `driverNamePrefix` empty to keep the
 canonical `nfs.csi.ngxstorage.com`.

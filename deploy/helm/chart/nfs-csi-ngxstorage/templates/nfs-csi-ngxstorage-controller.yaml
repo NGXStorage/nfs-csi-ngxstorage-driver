@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "ngxstorage.fullname" . }}-controller
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: nfs-csi-ngxstorage
     app.kubernetes.io/component: controller

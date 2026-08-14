@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ include "ngxstorage.fullname" . }}-node
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: nfs-csi-ngxstorage
     app.kubernetes.io/component: node

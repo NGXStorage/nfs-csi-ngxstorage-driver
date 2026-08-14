@@ -55,12 +55,6 @@
       "description": "Single label prepended to the CSI driver name and to driver resource names. Empty preserves nfs.csi.ngxstorage.com and the nfs-csi-ngxstorage resource names; a non-empty prefix produces <prefix>.nfs.csi.ngxstorage.com (driver name) and <prefix>-nfs-csi-ngxstorage (resource names) so a second driver instance can serve a distinct NGX backend on the same cluster (for example 201 or 205).",
       "default": ""
     },
-    "namespace": {
-      "type": "string",
-      "title": "Driver namespace",
-      "description": "Namespace that owns all namespaced driver resources. Use a distinct namespace for each driver instance.",
-      "default": "nfs-csi-ngxstorage"
-    },
     "nodePlacement": {
       "type": "string",
       "title": "Node pod placement",

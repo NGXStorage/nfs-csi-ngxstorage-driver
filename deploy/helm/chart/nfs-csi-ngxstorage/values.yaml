@@ -19,9 +19,6 @@ logLevel: info
 # instance can serve a distinct NGX backend on the same cluster.
 driverNamePrefix: ""
 
-# Namespace that owns all namespaced driver resources. Must differ per instance.
-namespace: nfs-csi-ngxstorage
-
 # Where the node DaemonSet may run: all (every node), master, or worker.
 nodePlacement: all
 

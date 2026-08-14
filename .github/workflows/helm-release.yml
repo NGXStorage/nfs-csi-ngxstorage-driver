@@ -41,6 +41,26 @@ jobs:
         run: |
           helm template test deploy/helm/chart/nfs-csi-ngxstorage \
             --set openshift.enabled=true > /dev/null
+      - name: Namespace contract
+        run: |
+          rendered="$(helm template test deploy/helm/chart/nfs-csi-ngxstorage \
+            --namespace namespace-contract \
+            --set openshift.enabled=true \
+            --set secret.create=true \
+            --set secret.storageIPs=test \
+            --set secret.poolName=test \
+            --set secret.apiKey=test \
+            --set secret.dataIP=test)"
+          if grep -q '^kind: Namespace$' <<<"$rendered"; then
+            echo "chart must not create its release namespace" >&2
+            exit 1
+          fi
+          if grep -q 'namespace: nfs-csi-ngxstorage' <<<"$rendered"; then
+            echo "namespaced resources ignored the Helm release namespace" >&2
+            exit 1
+          fi
+          grep -q 'namespace: namespace-contract' <<<"$rendered"
+          grep -q 'system:serviceaccount:namespace-contract:nfs-csi-ngxstorage-node' <<<"$rendered"
 
   publish:
     needs: lint
