@@ -7,10 +7,10 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T15:26:55.727337682+03:00"
+    created: "2026-08-14T12:28:45.402599131Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
-    digest: aa80e4cd8dc95b6622619efdc9c75d4467b6fa912f2e4a19fb455c8d041cb34d
+    digest: 721cbbc4db08262bf688c782a1751d6e551ce9ab28faba1171cb8825a41f37ee
     home: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     keywords:
     - csi
@@ -34,7 +34,7 @@ entries:
       charts.openshift.io/supportURL: https://github.com/NGXStorage/nfs-csi-ngxstorage-driver
     apiVersion: v2
     appVersion: 2.0.3
-    created: "2026-08-14T15:26:55.727065771+03:00"
+    created: "2026-08-14T12:28:45.402213573Z"
     description: NGX Storage NFS CSI Driver — provisions NFS shares from NGX Storage
       Manager
     digest: 8b29ec5a51e20f1c13484b58dbf388603a8f1310f553c88ec464e7969c02d05d
@@ -55,4 +55,4 @@ entries:
     urls:
     - https://ngxstorage.github.io/nfs-csi-ngxstorage-driver/nfs-csi-ngxstorage-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-14T15:26:55.726694851+03:00"
+generated: "2026-08-14T12:28:45.401465451Z"
