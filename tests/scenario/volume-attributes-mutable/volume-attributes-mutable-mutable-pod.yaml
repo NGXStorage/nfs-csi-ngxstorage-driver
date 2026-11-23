@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-attributes-mutable-pod
+  namespace: default
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ""
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: volume-attributes-mutable-pvc
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: volume-attributes-mutable-pvc
+    persistentVolumeClaim:
+      claimName: volume-attributes-mutable-pvc

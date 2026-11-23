@@ -1,0 +1,4 @@
+compression: "true"
+deduplication: "off"
+permissions: "111111111"
+flashtier_limit: "0"

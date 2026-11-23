@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-access-readonly-writer
+  namespace: default
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ""
+  containers:
+    - name: writer
+      image: nginx
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          echo "writer-data" > /data/writer.txt
+          echo "WRITER OK: /data/writer.txt yazıldı"
+          tail -f /dev/null
+      volumeMounts:
+        - name: data
+          mountPath: /data
+          readOnly: false
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: volume-access-readonly-pvc
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-access-readonly-reader
+  namespace: default
+spec:
+  containers:
+    - name: reader
+      image: nginx
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          found=0
+          i=0
+          while [ "$i" -lt 30 ]; do
+            if [ -f /data/writer.txt ]; then found=1; break; fi
+            i=$((i + 1))
+            sleep 1
+          done
+          if [ "$found" -ne 1 ] || [ "$(cat /data/writer.txt)" != "writer-data" ]; then
+            echo "READONLY FAIL: writer-data okunamadı"
+            exit 1
+          fi
+          if echo "must-fail" > /data/readonly-test 2>/dev/null; then
+            echo "READONLY FAIL: readOnly mount yazmayı kabul etti"
+            exit 1
+          fi
+          echo "READONLY OK: writer-data okundu, yazma reddedildi"
+          tail -f /dev/null
+      volumeMounts:
+        - name: data
+          mountPath: /data
+          readOnly: true
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: volume-access-readonly-pvc

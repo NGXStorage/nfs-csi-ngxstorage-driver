@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: volume-attributes-mutable-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: volume-attributes-mutable-sc
+  # Change this name to trigger ControllerModifyVolume, e.g.:
+  #   oc patch pvc volume-attributes-mutable-pvc --patch '{"spec":{"volumeAttributesClassName":"ngx-mutable"}}'
+  # (the new class must exist before patching)
+  # NOTE: requires the VolumeAttributesClass API, not served on OCP 4.20/K8s 1.33.
+  volumeAttributesClassName: ngx-mutable

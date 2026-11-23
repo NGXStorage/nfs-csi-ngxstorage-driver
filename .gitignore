@@ -1,0 +1,62 @@
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Local build outputs
+/cmd/csi-driver/nfs-csi-ngxstorage-driver
+# SHARED csi-sanity binary, built from the pinned fork commit (not a local copy)
+/build/shared-sanity/
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+.env
+/.env.*
+!/.env.example
+
+# Sonarqube scanner
+.scannerwork
+sonar-project.properties
+scripts/sonarscanner.bash
+
+# Workspace directories/files
+/codetest
+
+.apidog
+# Generated build artifacts (build/*.sh remains tracked source).
+/build/artifacts/
+/tests/tools/bin/
+__pycache__/
+*.py[cod]
+
+# Runtime logs and scenario evidence remain local.
+logs/
+*.log
+*.log.*
+
+# Local sanity configuration may contain credentials.
+/tests/sanity/*/config.env
+/tests/sanity/*/config.env.*
+!/tests/sanity/*/config.env.example
+
+# Scenario run results are evidence, not source.
+result.md
+/tests/sanity/sock/
+/tests/tools/sanity-proxy/csi-sanity-proxy

@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: benchmark-kbench-nfs-pvc
+  namespace: benchmark-kbench-nfs
+spec:
+  volumeMode: Filesystem
+  storageClassName: benchmark-kbench-nfs-sc
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi

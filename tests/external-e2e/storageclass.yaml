@@ -1,0 +1,13 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-e2e
+provisioner: nfs.csi.ngxstorage.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+parameters:
+  blocksize: "128k"
+  deduplication: "on"
+  compression: "on"
+  permissions: "111111111"

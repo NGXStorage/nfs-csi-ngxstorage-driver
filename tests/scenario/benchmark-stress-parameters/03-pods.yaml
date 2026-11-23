@@ -1,0 +1,1344 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p0
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-0-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-0-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p0-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p0-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p0-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p0-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p0-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p0-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p0-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p0-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p0-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p0-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p1
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-1-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-1-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p1-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p1-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p1-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p1-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p1-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p1-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p1-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p1-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p1-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p1-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p2
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-2-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-2-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p2-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p2-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p2-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p2-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p2-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p2-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p2-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p2-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p2-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p2-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p3
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-3-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-3-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p3-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p3-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p3-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p3-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p3-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p3-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p3-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p3-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p3-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p3-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p4
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-4-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-4-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p4-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p4-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p4-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p4-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p4-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p4-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p4-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p4-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p4-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p4-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p5
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-5-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-5-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p5-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p5-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p5-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p5-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p5-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p5-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p5-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p5-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p5-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p5-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p6
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-6-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-6-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p6-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p6-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p6-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p6-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p6-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p6-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p6-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p6-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p6-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p6-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p7
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-7-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-7-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p7-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p7-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p7-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p7-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p7-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p7-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p7-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p7-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p7-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p7-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p8
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-8-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-8-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p8-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p8-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p8-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p8-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p8-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p8-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p8-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p8-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p8-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p8-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p9
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-9-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-9-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p9-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p9-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p9-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p9-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p9-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p9-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p9-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p9-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p9-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p9-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p10
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-10-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-10-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p10-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p10-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p10-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p10-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p10-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p10-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p10-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p10-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p10-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p10-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p11
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-11-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-11-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p11-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p11-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p11-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p11-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p11-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p11-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p11-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p11-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p11-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p11-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p12
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-12-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-12-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p12-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p12-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p12-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p12-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p12-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p12-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p12-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p12-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p12-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p12-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p13
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-13-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-13-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p13-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p13-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p13-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p13-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p13-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p13-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p13-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p13-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p13-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p13-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p14
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-14-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-14-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p14-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p14-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p14-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p14-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p14-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p14-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p14-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p14-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p14-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p14-c1-m4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-p15
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: app-0
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-15-0" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v0-0
+        mountPath: /data0
+      - name: v0-1
+        mountPath: /data1
+      - name: v0-2
+        mountPath: /data2
+      - name: v0-3
+        mountPath: /data3
+      - name: v0-4
+        mountPath: /data4
+  - name: app-1
+    image: debian:13
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        for d in /data0 /data1 /data2 /data3 /data4; do
+          echo "ok-ngx-15-1" > "$d/write-test.txt"
+        done
+        sleep 86400
+    volumeMounts:
+      - name: v1-0
+        mountPath: /data0
+      - name: v1-1
+        mountPath: /data1
+      - name: v1-2
+        mountPath: /data2
+      - name: v1-3
+        mountPath: /data3
+      - name: v1-4
+        mountPath: /data4
+  volumes:
+  - name: v0-0
+    persistentVolumeClaim:
+      claimName: stress-p15-c0-m0
+  - name: v0-1
+    persistentVolumeClaim:
+      claimName: stress-p15-c0-m1
+  - name: v0-2
+    persistentVolumeClaim:
+      claimName: stress-p15-c0-m2
+  - name: v0-3
+    persistentVolumeClaim:
+      claimName: stress-p15-c0-m3
+  - name: v0-4
+    persistentVolumeClaim:
+      claimName: stress-p15-c0-m4
+  - name: v1-0
+    persistentVolumeClaim:
+      claimName: stress-p15-c1-m0
+  - name: v1-1
+    persistentVolumeClaim:
+      claimName: stress-p15-c1-m1
+  - name: v1-2
+    persistentVolumeClaim:
+      claimName: stress-p15-c1-m2
+  - name: v1-3
+    persistentVolumeClaim:
+      claimName: stress-p15-c1-m3
+  - name: v1-4
+    persistentVolumeClaim:
+      claimName: stress-p15-c1-m4
+---

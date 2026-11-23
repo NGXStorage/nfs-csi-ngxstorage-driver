@@ -1,0 +1,1185 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nfs-csi-ngxstorage-coordination-config
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: coordination-config
+immutable: true
+data:
+  lease-prefix: "nfs-csi-ngxstorage"
+  shard-count: "128"
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-000
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-001
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-002
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-003
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-004
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-005
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-006
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-007
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-008
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-009
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-010
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-011
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-012
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-013
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-014
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-015
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-016
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-017
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-018
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-019
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-020
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-021
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-022
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-023
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-024
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-025
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-026
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-027
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-028
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-029
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-030
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-031
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-032
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-033
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-034
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-035
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-036
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-037
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-038
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-039
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-040
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-041
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-042
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-043
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-044
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-045
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-046
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-047
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-048
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-049
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-050
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-051
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-052
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-053
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-054
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-055
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-056
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-057
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-058
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-059
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-060
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-061
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-062
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-063
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-064
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-065
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-066
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-067
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-068
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-069
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-070
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-071
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-072
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-073
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-074
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-075
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-076
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-077
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-078
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-079
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-080
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-081
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-082
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-083
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-084
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-085
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-086
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-087
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-088
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-089
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-090
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-091
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-092
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-093
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-094
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-095
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-096
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-097
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-098
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-099
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-100
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-101
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-102
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-103
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-104
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-105
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-106
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-107
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-108
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-109
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-110
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-111
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-112
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-113
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-114
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-115
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-116
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-117
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-118
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-119
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-120
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-121
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-122
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-123
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-124
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-125
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-126
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: coordination.k8s.io/v1
+kind: Lease
+metadata:
+  name: nfs-csi-ngxstorage-operation-lock-127
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: operation-lock
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: nfs-csi-ngxstorage-controller-operation-lock
+rules:
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    resourceNames:
+      - nfs-csi-ngxstorage-operation-lock-000
+      - nfs-csi-ngxstorage-operation-lock-001
+      - nfs-csi-ngxstorage-operation-lock-002
+      - nfs-csi-ngxstorage-operation-lock-003
+      - nfs-csi-ngxstorage-operation-lock-004
+      - nfs-csi-ngxstorage-operation-lock-005
+      - nfs-csi-ngxstorage-operation-lock-006
+      - nfs-csi-ngxstorage-operation-lock-007
+      - nfs-csi-ngxstorage-operation-lock-008
+      - nfs-csi-ngxstorage-operation-lock-009
+      - nfs-csi-ngxstorage-operation-lock-010
+      - nfs-csi-ngxstorage-operation-lock-011
+      - nfs-csi-ngxstorage-operation-lock-012
+      - nfs-csi-ngxstorage-operation-lock-013
+      - nfs-csi-ngxstorage-operation-lock-014
+      - nfs-csi-ngxstorage-operation-lock-015
+      - nfs-csi-ngxstorage-operation-lock-016
+      - nfs-csi-ngxstorage-operation-lock-017
+      - nfs-csi-ngxstorage-operation-lock-018
+      - nfs-csi-ngxstorage-operation-lock-019
+      - nfs-csi-ngxstorage-operation-lock-020
+      - nfs-csi-ngxstorage-operation-lock-021
+      - nfs-csi-ngxstorage-operation-lock-022
+      - nfs-csi-ngxstorage-operation-lock-023
+      - nfs-csi-ngxstorage-operation-lock-024
+      - nfs-csi-ngxstorage-operation-lock-025
+      - nfs-csi-ngxstorage-operation-lock-026
+      - nfs-csi-ngxstorage-operation-lock-027
+      - nfs-csi-ngxstorage-operation-lock-028
+      - nfs-csi-ngxstorage-operation-lock-029
+      - nfs-csi-ngxstorage-operation-lock-030
+      - nfs-csi-ngxstorage-operation-lock-031
+      - nfs-csi-ngxstorage-operation-lock-032
+      - nfs-csi-ngxstorage-operation-lock-033
+      - nfs-csi-ngxstorage-operation-lock-034
+      - nfs-csi-ngxstorage-operation-lock-035
+      - nfs-csi-ngxstorage-operation-lock-036
+      - nfs-csi-ngxstorage-operation-lock-037
+      - nfs-csi-ngxstorage-operation-lock-038
+      - nfs-csi-ngxstorage-operation-lock-039
+      - nfs-csi-ngxstorage-operation-lock-040
+      - nfs-csi-ngxstorage-operation-lock-041
+      - nfs-csi-ngxstorage-operation-lock-042
+      - nfs-csi-ngxstorage-operation-lock-043
+      - nfs-csi-ngxstorage-operation-lock-044
+      - nfs-csi-ngxstorage-operation-lock-045
+      - nfs-csi-ngxstorage-operation-lock-046
+      - nfs-csi-ngxstorage-operation-lock-047
+      - nfs-csi-ngxstorage-operation-lock-048
+      - nfs-csi-ngxstorage-operation-lock-049
+      - nfs-csi-ngxstorage-operation-lock-050
+      - nfs-csi-ngxstorage-operation-lock-051
+      - nfs-csi-ngxstorage-operation-lock-052
+      - nfs-csi-ngxstorage-operation-lock-053
+      - nfs-csi-ngxstorage-operation-lock-054
+      - nfs-csi-ngxstorage-operation-lock-055
+      - nfs-csi-ngxstorage-operation-lock-056
+      - nfs-csi-ngxstorage-operation-lock-057
+      - nfs-csi-ngxstorage-operation-lock-058
+      - nfs-csi-ngxstorage-operation-lock-059
+      - nfs-csi-ngxstorage-operation-lock-060
+      - nfs-csi-ngxstorage-operation-lock-061
+      - nfs-csi-ngxstorage-operation-lock-062
+      - nfs-csi-ngxstorage-operation-lock-063
+      - nfs-csi-ngxstorage-operation-lock-064
+      - nfs-csi-ngxstorage-operation-lock-065
+      - nfs-csi-ngxstorage-operation-lock-066
+      - nfs-csi-ngxstorage-operation-lock-067
+      - nfs-csi-ngxstorage-operation-lock-068
+      - nfs-csi-ngxstorage-operation-lock-069
+      - nfs-csi-ngxstorage-operation-lock-070
+      - nfs-csi-ngxstorage-operation-lock-071
+      - nfs-csi-ngxstorage-operation-lock-072
+      - nfs-csi-ngxstorage-operation-lock-073
+      - nfs-csi-ngxstorage-operation-lock-074
+      - nfs-csi-ngxstorage-operation-lock-075
+      - nfs-csi-ngxstorage-operation-lock-076
+      - nfs-csi-ngxstorage-operation-lock-077
+      - nfs-csi-ngxstorage-operation-lock-078
+      - nfs-csi-ngxstorage-operation-lock-079
+      - nfs-csi-ngxstorage-operation-lock-080
+      - nfs-csi-ngxstorage-operation-lock-081
+      - nfs-csi-ngxstorage-operation-lock-082
+      - nfs-csi-ngxstorage-operation-lock-083
+      - nfs-csi-ngxstorage-operation-lock-084
+      - nfs-csi-ngxstorage-operation-lock-085
+      - nfs-csi-ngxstorage-operation-lock-086
+      - nfs-csi-ngxstorage-operation-lock-087
+      - nfs-csi-ngxstorage-operation-lock-088
+      - nfs-csi-ngxstorage-operation-lock-089
+      - nfs-csi-ngxstorage-operation-lock-090
+      - nfs-csi-ngxstorage-operation-lock-091
+      - nfs-csi-ngxstorage-operation-lock-092
+      - nfs-csi-ngxstorage-operation-lock-093
+      - nfs-csi-ngxstorage-operation-lock-094
+      - nfs-csi-ngxstorage-operation-lock-095
+      - nfs-csi-ngxstorage-operation-lock-096
+      - nfs-csi-ngxstorage-operation-lock-097
+      - nfs-csi-ngxstorage-operation-lock-098
+      - nfs-csi-ngxstorage-operation-lock-099
+      - nfs-csi-ngxstorage-operation-lock-100
+      - nfs-csi-ngxstorage-operation-lock-101
+      - nfs-csi-ngxstorage-operation-lock-102
+      - nfs-csi-ngxstorage-operation-lock-103
+      - nfs-csi-ngxstorage-operation-lock-104
+      - nfs-csi-ngxstorage-operation-lock-105
+      - nfs-csi-ngxstorage-operation-lock-106
+      - nfs-csi-ngxstorage-operation-lock-107
+      - nfs-csi-ngxstorage-operation-lock-108
+      - nfs-csi-ngxstorage-operation-lock-109
+      - nfs-csi-ngxstorage-operation-lock-110
+      - nfs-csi-ngxstorage-operation-lock-111
+      - nfs-csi-ngxstorage-operation-lock-112
+      - nfs-csi-ngxstorage-operation-lock-113
+      - nfs-csi-ngxstorage-operation-lock-114
+      - nfs-csi-ngxstorage-operation-lock-115
+      - nfs-csi-ngxstorage-operation-lock-116
+      - nfs-csi-ngxstorage-operation-lock-117
+      - nfs-csi-ngxstorage-operation-lock-118
+      - nfs-csi-ngxstorage-operation-lock-119
+      - nfs-csi-ngxstorage-operation-lock-120
+      - nfs-csi-ngxstorage-operation-lock-121
+      - nfs-csi-ngxstorage-operation-lock-122
+      - nfs-csi-ngxstorage-operation-lock-123
+      - nfs-csi-ngxstorage-operation-lock-124
+      - nfs-csi-ngxstorage-operation-lock-125
+      - nfs-csi-ngxstorage-operation-lock-126
+      - nfs-csi-ngxstorage-operation-lock-127
+    verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: nfs-csi-ngxstorage-controller-operation-lock
+subjects:
+  - kind: ServiceAccount
+    name: nfs-csi-ngxstorage-controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: nfs-csi-ngxstorage-controller-operation-lock

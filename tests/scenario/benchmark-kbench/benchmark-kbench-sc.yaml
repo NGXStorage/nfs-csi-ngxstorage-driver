@@ -1,0 +1,17 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: benchmark-kbench-nfs-sc
+provisioner: nfs.csi.ngxstorage.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  blocksize: "128k"
+  deduplication: "off"
+  compression: "off"
+  # benchmark-kbench runs under OpenShift's random non-root UID; make the test export
+  # writable for that UID instead of requiring a privileged SCC.
+  permissions: "111111111"
+mountOptions:
+  - nfsvers=4.1

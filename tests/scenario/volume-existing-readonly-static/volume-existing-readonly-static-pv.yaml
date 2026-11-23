@@ -1,0 +1,20 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: volume-existing-readonly-static-pv
+  annotations:
+    pv.kubernetes.io/provisioned-by: nfs.csi.ngxstorage.com
+spec:
+  storageClassName: volume-existing-readonly-static-sc
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  csi:
+    driver: nfs.csi.ngxstorage.com
+    volumeHandle: nfs.csi.ngxstorage.com.__STATIC_SHARE_NAME__
+    volumeAttributes:
+      nfsvers: "nfsvers=3" # nfsvers=3, nfsvers=4.1, nfsvers=4.2
+      # this Attribute is set to "true" to make the volume volume-access-readonly for every pod that uses it
+      # you can set readOnly in the volumeMounts of the pod to "true" to make some pods volume-access-readonly while keeping this Attribute "false"
+      readonly: "true" # "true", "false"

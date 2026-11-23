@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-lifecycle-rwo-pod
+  namespace: default
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ""
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: volume-lifecycle-rwo-pvc
+      mountPath: /data # any path
+      readOnly: false # true, false
+  volumes:
+  - name: volume-lifecycle-rwo-pvc
+    persistentVolumeClaim:
+      claimName: volume-lifecycle-rwo-pvc

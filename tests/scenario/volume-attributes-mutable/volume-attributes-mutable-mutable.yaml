@@ -1,0 +1,28 @@
+# VolumeAttributesClass (beta since Kubernetes 1.31; GA in 1.34).
+# Modifying the class a PVC references triggers CSI ControllerModifyVolume.
+#
+# NOTE: the current OCP 4.20.22 (Kubernetes v1.33.11) cluster does NOT serve
+# the VolumeAttributesClass API (beta API disabled on cluster by default;
+# GA in 1.34). Verified live:
+#   oc api-resources | grep volumeattributesclass  -> (empty)
+# The example below is kept as the canonical manifest for when the cluster
+# reaches 1.34+ (or the API is enabled).
+#
+# On 1.31-1.33 the external-resizer must run with
+# --feature-gates=VolumeAttributesClass=true in the platform controller
+# manifest under deploy/manifest/<platform>; the default keeps it false.
+# Flip it only when the API is available.
+# Change the class on a live PVC:
+#   oc patch pvc volume-attributes-mutable-pvc --patch '{"spec":{"volumeAttributesClassName":"ngx-mutable"}}'
+apiVersion: storage.k8s.io/v1
+kind: VolumeAttributesClass
+metadata:
+  name: ngx-mutable
+# Must match the driver name.
+driverName: nfs.csi.ngxstorage.com
+parameters:
+  # Only mutable parameters supported by the backend can be changed.
+  # See pkg/utils/mutable.go for the whitelist (compression, deduplication,
+  # dram_cache, flash_cache, permissions, flashtier_limit).
+  deduplication: "off" # "on", "off"
+  compression: "off" # "on", "off"

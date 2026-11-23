@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-mount-pod
+  namespace: default
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/worker: ""
+  containers:
+  - name: client-container
+    image: nginx
+    volumeMounts:
+    - name: nfs-mount-pvc
+      mountPath: /data
+      readOnly: false
+  volumes:
+  - name: nfs-mount-pvc
+    persistentVolumeClaim:
+      claimName: nfs-mount-pvc

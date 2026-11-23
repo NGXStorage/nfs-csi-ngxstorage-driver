@@ -1,0 +1,208 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-con-don-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "on"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-con-don-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "on"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-con-doff-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "on"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-con-doff-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "on"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-coff-don-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "off"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-coff-don-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "off"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-coff-doff-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "off"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b4k-coff-doff-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "4k"
+  compression: "off"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-con-don-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "on"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-con-don-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "on"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-con-doff-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "on"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-con-doff-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "on"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-coff-don-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "off"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-coff-don-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "off"
+  deduplication: "on"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-coff-doff-p111111111-ton
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "off"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "on"
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi-ngxstorage-b128k-coff-doff-p111111111-toff
+provisioner: nfs.csi.ngxstorage.com
+parameters:
+  blocksize: "128k"
+  compression: "off"
+  deduplication: "off"
+  permissions: "111111111"
+  thin_provision: "off"
+volumeBindingMode: Immediate
+---

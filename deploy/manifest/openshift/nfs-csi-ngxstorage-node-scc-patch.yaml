@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nfs-csi-ngxstorage-node
+spec:
+  template:
+    metadata:
+      annotations:
+        openshift.io/required-scc: nfs-csi-ngxstorage-node-scc
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/worker: ""

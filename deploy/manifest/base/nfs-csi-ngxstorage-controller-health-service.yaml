@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nfs-csi-ngxstorage-controller-health
+  labels:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: controller-health
+spec:
+  selector:
+    app.kubernetes.io/name: nfs-csi-ngxstorage
+    app.kubernetes.io/component: controller
+  ports:
+    - name: healthz
+      port: 9808
+      targetPort: 9808
